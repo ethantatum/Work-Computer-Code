@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>13-Bands</title>
+</head>
+
+<body>
+    <script>
+        // Create an array of my favorite bands
+
+        let myBands = ["metallica", "alice in chains", "omnium gatherum","testament", "lorde"];
+
+        // Prompt asking user's favorite band
+        let userBand = prompt(`What's your favorite band?`).toLowerCase();
+
+        if (myBands.indexOf(userBand) >= 0) {
+            alert(`Sweet! I like ${userBand.charAt(0).toUpperCase()}${userBand.slice(1)} too!`);
+        } else {
+            alert(`Ugh...can't believe you're a fan of ${userBand.charAt(0).toUpperCase()}${userBand.slice(1)}...`);
+        }
+    </script>
+</body>
+
+</html>

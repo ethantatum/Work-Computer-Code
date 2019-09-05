@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>23-RPS Coded</title>
+</head>
+
+<body>
+    <h1>Welcome to "Rock", "Scissors", "Paper"! <span id="welcome"></span>Press "r", "s" or "p" to begin!</span></h1>
+
+    <h2>You chose: <span id="user-guess"></span></h2>
+    <h2>The computer chose: <span id="computer-guess"></span></h2>
+    <h2>Wins: <span id="wins"></span></h2>
+    <h2>Losses: <span id="losses"></span></h2>
+    <h2>Ties: <span id="ties"></span></h2>
+    <script>
+        // Global variables
+        let welcomeText = document.getElementById("welcome");
+        let userGuessText = document.getElementById("user-guess");
+        let computerGuessText = document.getElementById("computer-guess");
+        let winsText = document.getElementById("wins");
+        let lossesText = document.getElementById("losses");
+        let tiesText = document.getElementById("ties");
+
+        let wins = 0;
+        let losses = 0;
+        let ties = 0;
+
+        let userGuess;
+        let computerGuess;
+
+        let computerArray = ["r", "s", "p"];
+
+        document.onkeyup = function (e) {
+            userGuess = e.key;
+            console.log(userGuess);
+            if ((userGuess === "r") || (userGuess === "s") || (userGuess === "p")) {
+                computerGuess = computerArray[Math.floor(Math.random() * computerArray.length)];
+                userGuessText.textContent = userGuess;
+                computerGuessText.textContent = computerGuess;
+                if((userGuess === "r" && computerGuess === "s") ||
+                    (userGuess === "s" && computerGuess === "p") ||
+                    (userGuess === "p" && computerGuess === "r")) {
+                        wins++;
+                    } else if (userGuess === computerGuess) {
+                        ties++;
+                    } else {
+                        losses++;
+                    }
+            } else {
+                alert(`${userGuess} isn't a valid key - please press "r", "p", or "s"!`);
+            }
+
+            winsText.textContent = wins;
+            lossesText.textContent = losses;
+            tiesText.textContent = ties;
+        }
+
+    </script>
+</body>
+
+</html>

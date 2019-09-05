@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>09-Conditional Activity</title>
+</head>
+
+<body>
+    <script>
+        let steak = confirm(`Do you like steak?`);
+
+        if (steak) {
+            document.write(`Here's a steak sandwich!`);
+        } else {
+            document.write(`How about a tofu stiry fry then!`);
+        }
+
+        let sake = prompt(`What year were you born?`);
+
+        if (sake > 1998) {
+            alert(`Not 21 yet! No sake for you!`);
+        } else {
+            alert(`Have some sake!`);
+        }
+    </script>
+</body>
+
+</html>

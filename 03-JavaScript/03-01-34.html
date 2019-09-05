@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>34-Question Game</title>
+</head>
+
+<body>
+    <script>
+        let questionArray = [
+            {
+                q: "The capital of Bhutan is Thimphu",
+                a: "t"
+            },
+            {
+                q: "The capital of Indonesia is Bangkok",
+                a: "f"
+            },
+            {
+                q: "The capital of North Korea is Seoul",
+                a: "f"
+            },
+            {
+                q: "The capital of Brazil is Rio de Janeiro",
+                a: "f"
+            },
+            {
+                q: "The capital of Ghana is Accra",
+                a: "t"
+            },
+            {
+                q: "The capital of Spain is Lisbon",
+                a: "f"
+            },
+            {
+                q: "The capital of Japan is Tokyo",
+                a: "t"
+            },
+            {
+                q: "The capital of Saudia Arabia is Riyadh",
+                a: "t"
+            },
+            {
+                q: "The capital of Liechtenstein is Liechtenstein",
+                a: "f"
+            },
+            {
+                q: "The capital of the United States is New York",
+                a: "f"
+            }
+        ];
+
+        let correctAnswers = 0;
+        let wrongAnswers = 0;
+
+        for (let i = 0; i < questionArray.length; i++) {
+            let userAnswer = prompt(`Enter "t" or "f": ${questionArray[i].q}`);
+            if(userAnswer === questionArray[i].a) {
+                correctAnswers++;
+            } else {
+                wrongAnswers++;
+            }
+        }
+
+        console.log(`You got ${correctAnswers} right`);
+        console.log(`You got ${wrongAnswers} wrong`);
+
+    </script>
+</body>
+
+</html>

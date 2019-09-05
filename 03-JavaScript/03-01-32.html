@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>My First Object</title>
+  </head>
+  <body>
+
+    <script>
+
+      let car = {
+        make: "Honda",
+        model: "Fit",
+        color: "Blue Raspberry",
+        mileage: 3000,
+        isWorking: true,
+
+        driveToWork: function() {
+
+          alert(`Old Mileage: ${this.mileage}`);
+
+          this.mileage = this.mileage + 8;
+
+          alert(`New mileage: ${this.mileage}`);
+        },
+
+        driveAroundWorld: function() {
+
+          alert(`Old Mileage: ${this.mileage}`);
+
+          this.mileage = this.mileage + 24000;
+
+          alert(`New Mileage: ${this.mileage}`);
+          alert(`Your ${this.make} needs a tuneup!`);
+
+          this.isWorking = false;
+        },
+
+        getTuneUp: function() {
+          alert(`Your ${this.make} is ready to go!`);
+          this.isWorking = true;
+        },
+
+        honk: function() {
+          alert(`Honk! Honk!`);
+        }
+      };
+
+      function rewriteStats() {
+          console.log(`Make: ${car.make}`);
+          console.log(`Model: ${car.model}`);
+          console.log(`Color: ${car.color}`);
+          console.log(`Mileage: ${car.mileage}`);
+          console.log(`The ${car.model} is working: ${car.isWorking}`);
+      }
+
+      document.onkeyup = function(e) {
+          let userKey = e.key;
+
+          if (userKey === "w") {
+              car.driveToWork();
+              rewriteStats();
+          } else if (userKey === "e") {
+              car.driveAroundWorld();
+              rewriteStats();
+          } else if (userKey === "t") {
+              car.getTuneUp();
+              rewriteStats();
+          } else if (userKey === "h") {
+              car.honk();
+              rewriteStats();
+          } else {
+              alert(`Enter a "w", "t", "e", or "h"`);
+          }
+      }
+
+    </script>
+    
+  </body>
+</html>

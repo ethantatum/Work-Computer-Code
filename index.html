@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psychic Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="container-fluid bg-info p-1">
+        <div class="container bg-light">
+            <h1 class="text-center p-2">Are You Psychic?</h1>
+        </div>
+    </header>
+    <section class="container bg-warning mt-3 text-center">
+        <h2>Guess what letter I'm thinking of!</h2>
+        <br>
+        <button class="btn btn-large btn-danger" id="start"><span id="button-text"></span></button>
+        <h3>Your Guesses: <span id="guesses"></span></h3>
+        <h3>Guesses Left: <span id="guesses-left"></span></h3>
+        <h3>Wins: <span id="wins"></span></h3>
+        <h3>Losses: <span id="losses"></span></h3>
+        <br>
+        <h2 id="message"></h2>
+    </section>
+
+
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        // HTML element variables
+        const buttonText = document.getElementById("button-text");
+        const guessesText = document.getElementById("guesses");
+        const guessesLeftText = document.getElementById("guesses-left");
+        const winsText = document.getElementById("wins");
+        const lossesText = document.getElementById("losses");
+        const messageText = document.getElementById("message");
+
+        // Global game variables
+        const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+        let guesses = [];
+        let guessesLeft = 9;
+        let wins = 0;
+        let losses = 0;
+        let computerGuess;
+        let userGuess;
+
+
+        function playGame() {
+            guessesLeft = 9;
+            guessesLeftText.textContent = guessesLeft;
+            guesses = [];
+            guessesText.textContent = guesses;
+            computerGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
+
+            document.onkeyup = function (event) {
+                userGuess = event.keyCode;
+                console.log(typeof userGuess);
+                if (userGuess < 65 || userGuess > 90) {
+                    console.log(`${userGuess} isn't a letter`);
+                    messageText.textContent = "That's not a letter! Try again...";
+                    // startGame();
+
+                } else {
+                    userGuess = String.fromCharCode(userGuess);
+                    console.log(computerGuess);
+                    messageText.textContent = "";
+                    console.log(userGuess);
+                    if (userGuess === computerGuess) {
+                        messageText.textContent = (`You got it!`);
+                        wins++;
+                        winsText.textContent = wins;
+                        guesses = [];
+                        guessesText.textContent = guesses;
+                        guessesLeft = 9;
+                        guessesLeftText.textContent = guessesLeft;
+                        startGame();
+                    } else {
+                        guessesLeft--;
+                        if (guessesLeft === 0) {
+                            messageText.textContent = (`Sorry, it was "${computerGuess}"...try again!`);
+                            losses++;
+                            lossesText.textContent = losses;
+                            guesses = [];
+                            guessesText.textContent = guesses;
+                            guessesLeft = 9;
+                            guessesLeftText.textContent = guessesLeft;
+                            startGame();
+                        }
+                        guessesLeftText.textContent = guessesLeft;
+                        guesses.push(userGuess);
+                        guessesText.textContent = guesses;
+
+                    }
+                }
+            }
+        };
+        // On-click event to start game
+        function startGame() {
+            console.log(`startGame is firing`);
+            buttonText.textContent = "Click here to start!";
+            document.getElementById("start").onclick = function () {
+                messageText.textContent = "";
+                buttonText.textContent = "Press any letter to start guessing!";
+                playGame();
+            };
+        };
+
+        startGame();
+    </script>
+</body>
+
+</html>
