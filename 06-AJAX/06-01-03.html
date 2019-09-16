@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Favorite Movies</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h2>Basic Table</h2>
+        <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <!-- The scope attribute specifies that this is a header for a column -->
+                    <th scope="col">Movie Name</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Actors</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Interstellar</td>
+                    <td>2014</td>
+                    <td>Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow</td>
+                </tr>
+                <!-- Insert additional movie rows here -->
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        // The below code fills in the first row of the table
+        let movies = ["Blue+Ruin", "The+Witch", "Clay+Pigeons", "Midsommar"];
+        for (let i = 0; i < movies.length; i++) {
+            var queryURL = `https://www.omdbapi.com/?t=${movies[i]}&apikey=trilogy`;
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+                // Create and save a reference to new empty table row
+                let tableRow = $("<tr>");
+                // Create and save references to 3 td elements containing the Title, Year, and Actors from the AJAX response object
+                let titleData = $("<td>").text(response.Title);
+                let yearData = $("<td>").text(response.Year);
+                let actorData = $("<td>").text(response.Actors);
+
+                // Append the td elements to the new table row
+                tableRow.append(titleData, yearData, actorData);
+                // Append the table row to the tbody element
+                $("tbody").append(tableRow);
+            });
+        };
+
+    // Repeat the above logic to add rows for two more movies of your choice
+
+    // BONUS: Once complete, try to make your code as DRY as possible through the use of functions
+    </script>
+</body>
+
+</html>
