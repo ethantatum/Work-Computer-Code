@@ -2,68 +2,93 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>Favorite Movies</title>
-  <style type="text/css">
-    button,
-    div,
-    form,
-    input {
-      margin: 10px;
-    }
-  </style>
+    <meta charset="utf-8">
+    <title>Favorite Movies</title>
+    <style type="text/css">
+        button,
+        div,
+        form,
+        input {
+            margin: 10px;
+        }
+    </style>
 </head>
 
 <body>
 
-  <div class="container">
-    <h1>Movie Search</h1>
+    <div class="container">
+        <h1>Movie Search</h1>
 
-    <!-- Movies will get dumped here -->
-    <div id="buttons-view"></div>
+        <!-- Movies will get dumped here -->
+        <div id="buttons-view"></div>
 
-    <form id="movie-form">
-      <label for="movie-input">Add a Movie, Yo!</label>
-      <input type="text" id="movie-input"><br>
+        <form id="movie-form">
+            <label for="movie-input">Add a Movie, Yo!</label>
+            <input type="text" id="movie-input"><br>
 
-      <!-- Button triggers new movie to be added -->
-      <input id="add-movie" type="submit" value="Add a Movie, Yo!">
-    </form>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-      // Initial array of movies
-      let movies = ["The Matrix", "The Impossible", "Wag the Dog", "Through the Never"];
+            <!-- Button triggers new movie to be added -->
+            <input id="add-movie" type="submit" value="Add a Movie, Yo!">
+        </form>
 
-      // Function for displaying movie data
-      function renderButtons() {
-          $("#buttons-view").empty();
+        <div id="movie-display"></h4>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            // Initial array of movies
+            let movies = ["The Matrix", "The Impossible", "Wag the Dog", "Metallica: Through the Never"];
 
-        for(let i = 0; i < movies.length; i++) {
-            let newButton = $(`<button>${movies[i]}</button>`);
-            newButton.attr("data-value", movies[i]);
-            $("#buttons-view").append(newButton);
-        }
+            // Function for displaying movie data
+            function renderButtons() {
+                $("#buttons-view").empty();
 
-      }
+                for (let i = 0; i < movies.length; i++) {
+                    let newButton = $(`<button>${movies[i]}</button>`);
+                    newButton
+                        .attr("data-value", movies[i])
+                        .attr("class", "movie");
+                    $("#buttons-view").append(newButton);
+                }
 
-      // This function handles events where one button is clicked
-      $("#add-movie").on("click", function(event) {
-          event.preventDefault();
+            }
 
-            let movieName = $("#movie-input").val();
-            movies.push(movieName);
-            $("#movie-input").val("");
+            // This function handles events where one button is clicked
+            $("#add-movie").on("click", function (event) {
+                event.preventDefault();
+
+                let movieName = $("#movie-input").val();
+                movies.push(movieName);
+                $("#movie-input").val("");
+                renderButtons();
+                // let userButton = $(`<button>${movieName}</button>`);
+                // userButton.attr("data-value", userButton);
+                // $("#buttons-view").append(userButton);
+
+            });
+
+            $(document).on("click", ".movie", function (event) {
+                event.preventDefault();
+                $("#movie-display").empty();
+
+                let movieSearch = $(this).attr("data-value");
+                let queryURL = `https://www.omdbapi.com/?t=${movieSearch}&apikey=trilogy`;
+
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function (response) {
+                    let movieTitle = $(`<h4>${response.Title}</h4>`);
+                    let movieYear = $(`<h5>${response.Year}</h5>`);
+                    let moviePoster = $(`<img src=${response.Poster}>`);
+                    // moviePoster.attr("src" ``);
+                    $("#movie-display").prepend(movieTitle, movieYear, moviePoster);
+                }).catch(function (error) {
+                    console.error(error);
+                });
+            });
+
+            // Calling the renderButtons function to display the initial list of movies
             renderButtons();
-            // let userButton = $(`<button>${movieName}</button>`);
-            // userButton.attr("data-value", userButton);
-            // $("#buttons-view").append(userButton);
-
-      });
-
-      // Calling the renderButtons function to display the initial list of movies
-      renderButtons();
-    </script>
-  </div>
+        </script>
+    </div>
 </body>
 
 </html>
