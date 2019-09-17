@@ -29,27 +29,32 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
   function searchBandsInTown(artist) {
+      $("#artist-div").empty();
       console.log(artist);
     // Add code to query the bands in town api searching for the artist received as an argument to this function
-    let key = `eab4c555-f10e-4fbb-8c85-cd2311b32e91`;
-    let queryURL = `https://bandsintown.com/artists/${artist}/events`;
+    let key = `codingbootcamp`;
+    let queryURL = `https://rest.bandsintown.com/artists/${artist}/?app_id=${key}`;
 
     $.ajax({
         url: queryURL,
-        method: "GET",
-        app_id: key
+        method: "GET"
     }).then(function(response) {
-        console.log(response);
+    // Using jQuery, append the following to the #artist-div :
+    // The artist's name
+    let artistName = $(`<h3>${response.name}</h3>`);
+    // The artists thumbnail image
+    let artistPic = $(`<img src=${response.thumb_url}>`);
+    // The number of fans tracking this artist
+    let artistFans = $(`<h5>${response.tracker_count} fans are tracking ${response.name}</h5>`);
+    // The number of upcoming events for this artist
+    let artistEvents = $(`<h4>${response.name} has ${response.upcoming_event_count} events coming up</h4>`);
+    // A link to the bandsintown url for this artist
+    let artistLink = $(`<a href=${response.url} target="_blank">Click here to check out ${response.name} at BandsInTown</a>`);
+    // Note: Append actual HTML elements, not just text
+    $("#artist-div").append(artistName, artistPic, artistFans, artistEvents, artistLink);
     }).catch(function(error) {
         console.error(error);
     });
-    // Using jQuery, append the following to the #artist-div :
-    // The artist's name
-    // The artists thumbnail image
-    // The number of fans tracking this artist
-    // The number of upcoming events for this artist
-    // A link to the bandsintown url for this artist
-    // Note: Append actual HTML elements, not just text
   }
 
   // Event handler for user clicking the select-artist button
