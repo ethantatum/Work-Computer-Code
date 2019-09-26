@@ -77,4 +77,30 @@ console.log(pets);
 pets.push({name: "Twitch", type: "parakeet"});
 
 console.log(pets);
+console.log(``);
 
+
+// For loops
+console.log(`======== JS for loops ========`);
+// initialize; test; increment
+for(let i=0; i<characters.length; i++) {
+    console.log(`Using for loops, I can print ${characters[i]}.`);
+};
+console.log(``);
+
+// For...in loops
+console.log(`======== JS for...in loops ========`);
+let monsters = {
+    Canada: `Sasquatch`,
+    Nepal: `Yeti`,
+    Scotland: `Loch Ness Monster`
+};
+console.log(monsters);
+
+// for variable in object
+for(let property in monsters) {
+    console.log(property);
+    console.log(monsters[property]);
+    console.log(`In ${property}, we have the ${monsters[property]}.
+    `);
+}
