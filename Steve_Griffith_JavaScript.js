@@ -104,3 +104,27 @@ for(let property in monsters) {
     console.log(`In ${property}, we have the ${monsters[property]}.
     `);
 }
+
+// While and Do...while loops
+console.log(`======== JS while and do...while loops ========`);
+// // while (condition) {
+//     statements
+// }
+
+// do {
+//     statements
+// } while (condition)
+
+let total = 0;
+
+while(total < 30) {
+    total += Math.floor(Math.random() * 5) + 1;
+    console.log(`while total is ${total}`);
+}
+
+do{
+    total += Math.floor(Math.random() * 5) + 1;
+    console.log(`do...while total is ${total}`);
+} while (total < 30)
+
+console.log(``);
