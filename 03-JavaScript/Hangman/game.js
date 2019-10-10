@@ -43,17 +43,25 @@ $(document).ready(function () {
         } else {
             userGuess = String.fromCharCode(userGuess).toLowerCase();
             console.log(userGuess);
-
-           
+            for (let i = 0; i < chosenWord.length; i++) {
+                if (chosenWord[i] === userGuess) {
+                    hiddenWord[i] = chosenWord[i];
+                    $("#word-display").text(hiddenWord.join(""));
+                } else {
+                    wrongGuess(userGuess);
+                }
+            }
+            function wrongGuess(letter) {
+                if (lettersGuessed.indexOf(letter) > -1) {
+                    console.log(lettersGuessed);
+                    
+                    alert(`You already guessed ${letter}, try another letter.`);
+                } else {
+                    lettersGuessed.push(letter);
+                    $("#letters-guessed").text(lettersGuessed.join(", "));
+                }
+            }
         }
 
     });
-
-
-
-
-
-
-
-
 });
