@@ -31,9 +31,10 @@ let choices = ["Tire Iron", "Pistol", "Sledgehammer", "Pitchfork", "Decorative S
 
 function gamePlay() {
     console.log(`
-Your health is ${userHealth}.`.bgGreen.black.bold);
+Your health is ${userHealth}.`.bold);
     console.log(`
-The zombie's health is ${zombieHealth}.`.bgRed.black);
+The zombie's health is ${zombieHealth}.
+`.bold);
 
 
     inquirer
