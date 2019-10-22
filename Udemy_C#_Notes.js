@@ -13,3 +13,7 @@
 //  bool: used to store true/false
 //  Can declare multiple variables with single data type (ie "string firstName lastName")
 //  Console.WriteLine inserts new lines, Console.Write does not
+//  ToString() will convert any numeric value to a string
+//  Can't convert certain types without casting (ie, float to an int)
+//  Convert.ToInt32 will convert floats, doubles, decimals to ints (but only whole numbers)
+//  Casting will ignore the number after decimal point (ie, number = (int)3.9 will equal 3)
