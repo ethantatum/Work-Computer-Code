@@ -17,3 +17,9 @@
 //  Can't convert certain types without casting (ie, float to an int)
 //  Convert.ToInt32 will convert floats, doubles, decimals to ints (but only whole numbers)
 //  Casting will ignore the number after decimal point (ie, number = (int)3.9 will equal 3)
+// var keyword can be used to declare a variable without specifying type
+// ushort, uint, ulong are for numbers 0 or greater
+// MaxValue and MinValue for number data types
+//  float takes 4 bytes; allows 7 digits
+//  double takes 8 bytes; allows 15-16 digits
+//  decimal takes 16 bytes; allows 28-29 digits
