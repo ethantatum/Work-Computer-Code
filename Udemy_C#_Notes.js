@@ -23,3 +23,7 @@
 //  float takes 4 bytes; allows 7 digits
 //  double takes 8 bytes; allows 15-16 digits
 //  decimal takes 16 bytes; allows 28-29 digits
+//  new DateTime(), DateTime.Now; can format different ways, add time
+//  Use regular expressions to custom format dates; string.Format("Date is {0: yyyy MMMM dd}", variable)
+//  Error types: syntax errors, run-time errors (exceptions), logical errors
+//  Choose variaible names that are readable and easy to understand
